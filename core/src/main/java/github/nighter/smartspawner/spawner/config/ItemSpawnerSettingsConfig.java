@@ -122,8 +122,8 @@ public class ItemSpawnerSettingsConfig {
                 continue;
             }
             
-            // Parse head texture data
-            parseHeadTexture(material, itemSection);
+            // Parse appearance data (head texture, custom model data)
+            parseItemAppearance(material, itemSection);
             
             // Parse loot data
             parseLootData(material, itemSection);
@@ -192,39 +192,65 @@ public class ItemSpawnerSettingsConfig {
     }
     
     /**
-     * Parse head texture configuration for an item
+     * Parse appearance configuration for an item spawner (GUI head texture and spawner item custom model data)
      */
-    private void parseHeadTexture(Material material, ConfigurationSection itemSection) {
+    private void parseItemAppearance(Material material, ConfigurationSection itemSection) {
+        Integer customModelData = parseCustomModelData(material.name(), itemSection);
+
         ConfigurationSection headSection = itemSection.getConfigurationSection("head_texture");
-        if (headSection == null) {
+        if (headSection == null && customModelData == null) {
             return;
         }
-        
-        String headMaterialName = headSection.getString("material", material.name());
-        String customTexture = headSection.getString("custom_texture");
-        
-        // Validate material
-        Material headMaterial;
-        try {
-            headMaterial = Material.valueOf(headMaterialName.toUpperCase());
-            if (!headMaterial.isItem()) {
-                plugin.getLogger().warning("Material " + headMaterialName + " for " + material + " is not an item, using the item itself");
+
+        Material headMaterial = material;
+        String customTexture = null;
+        if (headSection != null) {
+            String headMaterialName = headSection.getString("material", material.name());
+            customTexture = headSection.getString("custom_texture");
+
+            try {
+                headMaterial = Material.valueOf(headMaterialName.toUpperCase());
+                if (!headMaterial.isItem()) {
+                    plugin.getLogger().warning("Material " + headMaterialName + " for " + material + " is not an item, using the item itself");
+                    headMaterial = material;
+                }
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Invalid head material " + headMaterialName + " for " + material + ", using the item itself");
                 headMaterial = material;
             }
-        } catch (IllegalArgumentException e) {
-            plugin.getLogger().warning("Invalid head material " + headMaterialName + " for " + material + ", using the item itself");
-            headMaterial = material;
         }
-        
-        // Store item head data
-        itemHeadMap.put(material, new ItemHeadData(headMaterial, customTexture));
+
+        itemHeadMap.put(material, new ItemHeadData(headMaterial, customTexture, customModelData));
+    }
+
+    private Integer parseCustomModelData(String contextName, ConfigurationSection section) {
+        if (!section.isSet("custom_model_data")) {
+            return null;
+        }
+        int value = section.getInt("custom_model_data");
+        if (value == 0) {
+            return null;
+        }
+        if (value < 0) {
+            plugin.getLogger().warning("Invalid custom_model_data " + value + " for " + contextName + ", must be positive (0 disables)");
+            return null;
+        }
+        return value;
     }
     
     /**
      * Get the head texture data for an item material
      */
     public ItemHeadData getHeadData(Material material) {
-        return itemHeadMap.getOrDefault(material, new ItemHeadData(defaultMaterial, null));
+        return itemHeadMap.getOrDefault(material, new ItemHeadData(defaultMaterial, null, null));
+    }
+
+    /**
+     * Get custom model data for spawner items of this item spawner type, or null if not configured
+     */
+    public Integer getCustomModelData(Material material) {
+        ItemHeadData data = itemHeadMap.get(material);
+        return data != null ? data.getCustomModelData() : null;
     }
     
     /**
@@ -261,20 +287,26 @@ public class ItemSpawnerSettingsConfig {
     public static class ItemHeadData {
         private final Material material;
         private final String customTexture;
-        
-        public ItemHeadData(Material material, String customTexture) {
+        private final Integer customModelData;
+
+        public ItemHeadData(Material material, String customTexture, Integer customModelData) {
             this.material = material;
             this.customTexture = customTexture;
+            this.customModelData = customModelData;
         }
-        
+
         public Material getMaterial() {
             return material;
         }
-        
+
         public String getCustomTexture() {
             return customTexture;
         }
-        
+
+        public Integer getCustomModelData() {
+            return customModelData;
+        }
+
         public boolean hasCustomTexture() {
             return customTexture != null && !customTexture.isEmpty() && !customTexture.equalsIgnoreCase("null");
         }

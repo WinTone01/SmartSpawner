@@ -2,6 +2,7 @@ package github.nighter.smartspawner.spawner.config;
 
 import github.nighter.smartspawner.Scheduler;
 import github.nighter.smartspawner.SmartSpawner;
+import github.nighter.smartspawner.nms.VersionInitializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -52,7 +53,7 @@ public class SpawnerMobHeadTexture {
         }
 
         if (isBedrockPlayer(player)) {
-            ItemStack item = DEFAULT_SPAWNER_BLOCK.clone();
+            ItemStack item = createBedrockSpawnerIcon(entityType, null);
             if (metaModifier != null) {
                 item.editMeta(metaModifier);
             }
@@ -99,6 +100,11 @@ public class SpawnerMobHeadTexture {
                 item.editMeta(metaModifier);
             }
             return item;
+        }
+
+        Integer customModelData = settingsConfig.getCustomModelData(entityType);
+        if (customModelData != null) {
+            return createSpawnerIconWithCustomModelData(entityType, customModelData, metaModifier);
         }
         
         // Get material from config
@@ -189,7 +195,7 @@ public class SpawnerMobHeadTexture {
         }
 
         if (isBedrockPlayer(player)) {
-            ItemStack item = DEFAULT_SPAWNER_BLOCK.clone();
+            ItemStack item = createBedrockSpawnerIcon(null, itemMaterial);
             if (metaModifier != null) {
                 item.editMeta(metaModifier);
             }
@@ -224,11 +230,15 @@ public class SpawnerMobHeadTexture {
             return item;
         }
 
+        Integer customModelData = plugin.getItemSpawnerSettingsConfig().getCustomModelData(itemMaterial);
+        if (customModelData != null) {
+            return createItemSpawnerIconWithCustomModelData(itemMaterial, customModelData, metaModifier);
+        }
+
         // Get head data from item spawner config
         ItemSpawnerSettingsConfig.ItemHeadData headData = plugin.getItemSpawnerSettingsConfig().getHeadData(itemMaterial);
         Material headMaterial = headData.getMaterial();
 
-        // For item spawners, we just use the item material as the head (no custom textures)
         ItemStack item = new ItemStack(headMaterial);
         if (metaModifier != null) {
             item.editMeta(metaModifier);
@@ -239,6 +249,73 @@ public class SpawnerMobHeadTexture {
             ITEM_HEAD_CACHE.put(itemMaterial, item.clone());
         }
 
+        return item;
+    }
+
+    private static ItemStack createSpawnerIconWithCustomModelData(
+            EntityType entityType, int customModelData, Consumer<ItemMeta> metaModifier) {
+        if (metaModifier == null) {
+            ItemStack cached = HEAD_CACHE.get(entityType);
+            if (cached != null && cached.getType() == Material.SPAWNER) {
+                return cached.clone();
+            }
+        }
+
+        ItemStack item = new ItemStack(Material.SPAWNER);
+        item.editMeta(meta -> {
+            VersionInitializer.applyCustomModelData(meta, customModelData);
+            if (metaModifier != null) {
+                metaModifier.accept(meta);
+            }
+        });
+
+        if (metaModifier == null) {
+            HEAD_CACHE.put(entityType, item.clone());
+        }
+        return item;
+    }
+
+    private static ItemStack createItemSpawnerIconWithCustomModelData(
+            Material itemMaterial, int customModelData, Consumer<ItemMeta> metaModifier) {
+        if (metaModifier == null) {
+            ItemStack cached = ITEM_HEAD_CACHE.get(itemMaterial);
+            if (cached != null && cached.getType() == Material.SPAWNER) {
+                return cached.clone();
+            }
+        }
+
+        ItemStack item = new ItemStack(Material.SPAWNER);
+        item.editMeta(meta -> {
+            VersionInitializer.applyCustomModelData(meta, customModelData);
+            if (metaModifier != null) {
+                metaModifier.accept(meta);
+            }
+        });
+
+        if (metaModifier == null) {
+            ITEM_HEAD_CACHE.put(itemMaterial, item.clone());
+        }
+        return item;
+    }
+
+    private static ItemStack createBedrockSpawnerIcon(EntityType entityType, Material itemMaterial) {
+        SmartSpawner plugin = SmartSpawner.getInstance();
+        ItemStack item = DEFAULT_SPAWNER_BLOCK.clone();
+        if (plugin == null) {
+            return item;
+        }
+        final Integer customModelData;
+        if (entityType != null && plugin.getSpawnerSettingsConfig() != null) {
+            customModelData = plugin.getSpawnerSettingsConfig().getCustomModelData(entityType);
+        } else if (itemMaterial != null && plugin.getItemSpawnerSettingsConfig() != null) {
+            customModelData = plugin.getItemSpawnerSettingsConfig().getCustomModelData(itemMaterial);
+        } else {
+            customModelData = null;
+        }
+        if (customModelData != null) {
+            final int cmd = customModelData;
+            item.editMeta(meta -> VersionInitializer.applyCustomModelData(meta, cmd));
+        }
         return item;
     }
 

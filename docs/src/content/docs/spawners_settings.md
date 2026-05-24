@@ -21,9 +21,10 @@ default_material: "SPAWNER"
 
 MOB_NAME:
   experience: <number>
+  custom_model_data: <integer>  # 0 = disabled (head_texture). 1+ = resource pack model
   head_texture:
     material: <MATERIAL>
-    custom_texture: <texture_hash>  # null for vanilla heads
+    custom_texture: <texture_hash>  # null for vanilla heads (GUI only)
   loot:  # Optional section
     ITEM_ID:
       amount: <min>-<max>
@@ -41,8 +42,9 @@ MOB_NAME:
 |----------|--------|-------------|
 | **default_material** | `"SPAWNER"` | Fallback material for unknown mobs (global) |
 | **experience** | `5` | XP generated per spawner trigger |
-| **material** | `"PLAYER_HEAD"` | Head texture material (PLAYER_HEAD, SPAWNER, etc.) |
-| **custom_texture** | `"abc123..."` | Base64 texture hash (use `null` for vanilla heads) |
+| **custom_model_data** | `0` / `1001` | `0` disables (uses `head_texture` in GUIs). `1+` applies resource pack model on spawner items and GUIs. |
+| **material** | `"PLAYER_HEAD"` | GUI head texture material (PLAYER_HEAD, SPAWNER, etc.) |
+| **custom_texture** | `"abc123..."` | Base64 texture hash for GUI heads (use `null` for vanilla heads) |
 
 ### Loot Properties
 
@@ -58,6 +60,26 @@ MOB_NAME:
 - Amount format: `min-max` where min ≤ max
 - Chance between 0.0-100.0
 - Custom texture can be `null` for vanilla mob heads
+- `custom_model_data` must be `0` (disabled) or a positive integer
+
+## Custom Model Data (Resource Packs)
+
+Use `custom_model_data: 0` (or omit the key) to keep default behavior: **GUI icons use `head_texture`**, spawner items use the vanilla spawner model.
+
+Values **1 and above** apply that CustomModelData on spawner items in inventory, when dropped, and in SmartSpawner GUIs (main menu, storage, sell confirm, list, near). GUI icons then use a `SPAWNER` item with that model instead of `head_texture` player heads.
+
+Configure the same integer in your resource pack's item model predicate for `minecraft:spawner`, then set it per mob:
+
+```yaml
+BLAZE:
+  experience: 10
+  custom_model_data: 1001
+  head_texture:
+    material: "PLAYER_HEAD"
+    custom_texture: "737623f79f7eb4f3f80da65b652cc44b2148eea41f9ffe2e86a23bdf49ab77b1"
+```
+
+After changing values, run `/ss reload` so newly given or dropped items use the updated model.
 
 ## Understanding Drop Mechanics
 

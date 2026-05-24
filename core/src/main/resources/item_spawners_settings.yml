@@ -1,6 +1,9 @@
 # Important: Each time a spawner is triggered, it will generate between min_mobs and max_mobs (default: 1 to 4) times the drops specified below.
 # For detailed configuration guide and examples, please visit:
 # https://nighterdevelopment.github.io/SmartSpawner/item_spawners_settings/
+#
+# Per-item custom_model_data (default: 0 = disabled, uses head_texture for GUIs).
+# Values 1+ apply resource pack model on item spawner items and GUIs instead of head_texture.
 
 # Default head material for unknown items
 default_material: "SPAWNER"
@@ -9,6 +12,7 @@ default_material: "SPAWNER"
 NETHERITE_INGOT:
   material: "NETHERITE_INGOT"
   experience: 1
+  custom_model_data: 0
   loot:
     NETHERITE_INGOT:
       amount: 1-1
@@ -21,6 +25,7 @@ NETHERITE_INGOT:
 DIAMOND:
   material: "DIAMOND"
   experience: 1
+  custom_model_data: 0
   loot:
     DIAMOND:
       amount: 1-1
@@ -33,6 +38,7 @@ DIAMOND:
 COAL:
   material: "COAL"
   experience: 1
+  custom_model_data: 0
   loot:
     COAL:
       amount: 1-1
@@ -45,6 +51,7 @@ COAL:
 GOLD_INGOT:
   material: "GOLD_INGOT"
   experience: 1
+  custom_model_data: 0
   loot:
     GOLD_INGOT:
       amount: 1-1
@@ -57,6 +64,7 @@ GOLD_INGOT:
 EMERALD:
   material: "EMERALD"
   experience: 1
+  custom_model_data: 0
   loot:
     EMERALD:
       amount: 1-1
@@ -69,6 +77,7 @@ EMERALD:
 NETHER_STAR:
   material: "NETHER_STAR"
   experience: 1
+  custom_model_data: 0
   loot:
     NETHER_STAR:
       amount: 1-1
@@ -81,6 +90,7 @@ NETHER_STAR:
 TOTEM_OF_UNDYING:
   material: "TOTEM_OF_UNDYING"
   experience: 1
+  custom_model_data: 0
   loot:
     TOTEM_OF_UNDYING:
       amount: 1-1

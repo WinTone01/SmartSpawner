@@ -532,11 +532,12 @@ public class SpawnerMenuUI {
         if (spawner.isItemSpawner()) {
             // For item spawners, use the item material as the head
             spawnerItem = SpawnerMobHeadTexture.getItemSpawnerHead(spawner.getSpawnedItemMaterial(), player, metaModifier);
-        } else if (spawnerInfoButton != null && spawnerInfoButton.getMaterial() == Material.PLAYER_HEAD) {
-            // Use custom head texture for MOB_HEAD material
+        } else if (spawnerInfoButton != null && spawnerInfoButton.getMaterial() == Material.PLAYER_HEAD
+                || (entityType != null && plugin.getSpawnerSettingsConfig().getCustomModelData(entityType) != null)) {
+            // Player head textures, or resource-pack spawner model via custom_model_data
             spawnerItem = SpawnerMobHeadTexture.getCustomHead(entityType, player, metaModifier);
         } else if (spawnerInfoButton != null) {
-            // Use the configured material
+            // Use the configured layout material when no custom_model_data override
             spawnerItem = new ItemStack(spawnerInfoButton.getMaterial());
             spawnerItem.editMeta(metaModifier);
         } else {

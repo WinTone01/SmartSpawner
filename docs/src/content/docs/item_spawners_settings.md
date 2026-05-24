@@ -22,6 +22,7 @@ default_material: "SPAWNER"
 ITEM_MATERIAL:
   material: <MATERIAL>
   experience: <number>
+  custom_model_data: <integer>  # 0 = disabled (head_texture). 1+ = resource pack model
   loot:
     ITEM_ID:
       amount: <min>-<max>
@@ -42,6 +43,7 @@ ITEM_MATERIAL:
 | **default_material** | `"SPAWNER"` | Fallback material for unknown items (global) |
 | **material** | `"DIAMOND"` | The primary material this spawner generates |
 | **experience** | `1` | XP generated per spawner trigger |
+| **custom_model_data** | `0` / `2001` | `0` disables (uses `head_texture` in GUIs). `1+` applies resource pack model on item spawner items and GUIs. |
 
 ### Head Texture Properties
 
@@ -64,6 +66,25 @@ ITEM_MATERIAL:
 - Chance between 0.0-100.0
 - Custom texture can be `null` for vanilla materials
 - Potion types only work with `TIPPED_ARROW` material
+- `custom_model_data` must be `0` (disabled) or a positive integer
+
+## Custom Model Data (Resource Packs)
+
+Use `custom_model_data: 0` (or omit the key) to keep default behavior: **GUI icons use `head_texture`**.
+
+Values **1 and above** change item spawner stacks in inventory, when dropped, and in GUIs to a `SPAWNER` item with that CustomModelData instead of the `head_texture` material.
+
+```yaml
+DIAMOND:
+  material: DIAMOND
+  experience: 1
+  custom_model_data: 2001
+  head_texture:
+    material: DIAMOND
+    custom_texture: null
+```
+
+Run `/ss reload` after editing so new items pick up the updated value.
 
 ## Understanding Drop Mechanics
 

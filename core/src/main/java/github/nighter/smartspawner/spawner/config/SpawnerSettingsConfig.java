@@ -264,8 +264,8 @@ public class SpawnerSettingsConfig {
             ConfigurationSection entitySection = config.getConfigurationSection(entityName);
             if (entitySection == null) continue;
             
-            // Parse head texture data
-            parseHeadTexture(entityType, entitySection);
+            // Parse appearance data (head texture, custom model data)
+            parseEntityAppearance(entityType, entitySection);
             
             // Parse loot data
             parseLootData(entityName, entitySection);
@@ -273,32 +273,50 @@ public class SpawnerSettingsConfig {
     }
     
     /**
-     * Parse head texture configuration for an entity
+     * Parse appearance configuration for an entity (GUI head texture and spawner item custom model data)
      */
-    private void parseHeadTexture(EntityType entityType, ConfigurationSection entitySection) {
+    private void parseEntityAppearance(EntityType entityType, ConfigurationSection entitySection) {
+        Integer customModelData = parseCustomModelData(entityType.name(), entitySection);
+
         ConfigurationSection headSection = entitySection.getConfigurationSection("head_texture");
-        if (headSection == null) {
+        if (headSection == null && customModelData == null) {
             return;
         }
-        
-        String materialName = headSection.getString("material", "SPAWNER");
-        String customTexture = headSection.getString("custom_texture");
-        
-        // Validate material
-        Material material;
-        try {
-            material = Material.valueOf(materialName.toUpperCase());
-            if (!material.isItem()) {
-                plugin.getLogger().warning("Material " + materialName + " for " + entityType + " is not an item, using default");
+
+        Material material = defaultMaterial;
+        String customTexture = null;
+        if (headSection != null) {
+            String materialName = headSection.getString("material", "SPAWNER");
+            customTexture = headSection.getString("custom_texture");
+
+            try {
+                material = Material.valueOf(materialName.toUpperCase());
+                if (!material.isItem()) {
+                    plugin.getLogger().warning("Material " + materialName + " for " + entityType + " is not an item, using default");
+                    material = defaultMaterial;
+                }
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Invalid material " + materialName + " for " + entityType + ", using default");
                 material = defaultMaterial;
             }
-        } catch (IllegalArgumentException e) {
-            plugin.getLogger().warning("Invalid material " + materialName + " for " + entityType + ", using default");
-            material = defaultMaterial;
         }
-        
-        // Store mob head data
-        mobHeadMap.put(entityType, new MobHeadData(material, customTexture));
+
+        mobHeadMap.put(entityType, new MobHeadData(material, customTexture, customModelData));
+    }
+
+    private Integer parseCustomModelData(String contextName, ConfigurationSection section) {
+        if (!section.isSet("custom_model_data")) {
+            return null;
+        }
+        int value = section.getInt("custom_model_data");
+        if (value == 0) {
+            return null;
+        }
+        if (value < 0) {
+            plugin.getLogger().warning("Invalid custom_model_data " + value + " for " + contextName + ", must be positive (0 disables)");
+            return null;
+        }
+        return value;
     }
     
     /**
@@ -403,6 +421,14 @@ public class SpawnerSettingsConfig {
         MobHeadData data = mobHeadMap.get(entityType);
         return data != null && data.customTexture != null && !data.customTexture.isEmpty();
     }
+
+    /**
+     * Get custom model data for spawner items of this entity type, or null if not configured
+     */
+    public Integer getCustomModelData(EntityType entityType) {
+        MobHeadData data = mobHeadMap.get(entityType);
+        return data != null ? data.customModelData : null;
+    }
     
     // ===== Loot Methods =====
     
@@ -436,10 +462,12 @@ public class SpawnerSettingsConfig {
     private static class MobHeadData {
         final Material material;
         final String customTexture;
-        
-        MobHeadData(Material material, String customTexture) {
+        final Integer customModelData;
+
+        MobHeadData(Material material, String customTexture, Integer customModelData) {
             this.material = material;
             this.customTexture = customTexture;
+            this.customModelData = customModelData;
         }
     }
 }

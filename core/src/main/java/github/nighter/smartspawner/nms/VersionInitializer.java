@@ -229,6 +229,18 @@ public class VersionInitializer {
     }
 
     /**
+     * Apply custom model data to item meta.
+     *
+     * @param meta  The ItemMeta to modify
+     * @param value Non-negative custom model data value
+     */
+    public static void applyCustomModelData(ItemMeta meta, int value) {
+        if (meta != null) {
+            meta.setCustomModelData(value);
+        }
+    }
+
+    /**
      * Hide tooltip using ItemFlag (Paper < 1.21.5)
      */
     private static void hideTooltipUsingItemFlag(ItemStack item) {

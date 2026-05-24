@@ -1,6 +1,9 @@
 # Important: Each time a spawner is triggered, it will generate between min_mobs and max_mobs (default: 1 to 4) times the drops specified below.
 # For detailed configuration guide and examples, please visit:
 # https://nighterdevelopment.github.io/SmartSpawner/spawners_settings/
+#
+# Per-mob custom_model_data (default: 0 = disabled, uses head_texture for GUIs).
+# Values 1+ apply resource pack model on spawner items and GUIs instead of head_texture.
 
 # Default head material for unknown mobs
 default_material: "SPAWNER"
@@ -8,6 +11,7 @@ default_material: "SPAWNER"
 # Reference: https://minecraft.wiki/w/Allay#Drops
 ALLAY:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "df5de940bfe499c59ee8dac9f9c3919e7535eff3a9acb16f4842bf290f4c679f"
@@ -15,6 +19,7 @@ ALLAY:
 # Reference: https://minecraft.wiki/w/Armadillo#Drops
 ARMADILLO:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "9164ed0e0ef69b0ce7815e4300b4413a4828fcb0092918543545a418a48e0c3c"
@@ -22,6 +27,7 @@ ARMADILLO:
 # Reference: https://minecraft.wiki/w/Axolotl#Drops
 AXOLOTL:
   experience: 1
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "21c3aa0d539208b47972bf8e72f0505cdcfb8d7796b2fcf85911ce94fd0193d0"
@@ -29,6 +35,7 @@ AXOLOTL:
 # Reference: https://minecraft.wiki/w/Bat#Drops
 BAT:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "81c5cc1f40005a33124c60384a0f17a36a7b19ae90f1c32dcda17b5b56280a43"
@@ -36,6 +43,7 @@ BAT:
 # Reference: https://minecraft.wiki/w/Bee#Drops
 BEE:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "76ded8355a5625893e8041877af65683c2fd0aa09c3d3c1c94f5f80a0f8c22cb"
@@ -43,6 +51,7 @@ BEE:
 # Reference: https://minecraft.wiki/w/Blaze#Drops
 BLAZE:
   experience: 10
+  custom_model_data: 0
   loot:
     BLAZE_ROD:
       amount: 0-1
@@ -54,6 +63,7 @@ BLAZE:
 # Reference: https://minecraft.wiki/w/Bogged#Drops
 BOGGED:
   experience: 5
+  custom_model_data: 0
   loot:
     BONE:
       amount: 0-2
@@ -76,6 +86,7 @@ BOGGED:
 # Reference: https://minecraft.wiki/w/Breeze#Drops
 BREEZE:
   experience: 10
+  custom_model_data: 0
   loot:
     BREEZE_ROD:
       amount: 1-2
@@ -87,6 +98,7 @@ BREEZE:
 # Reference: https://minecraft.wiki/w/Camel#Drops
 CAMEL:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "7eb6ad908b8d5155bc4d249271ef6084d455dd0e70a4002eb148f9e20b9deb2c"
@@ -94,6 +106,7 @@ CAMEL:
 # Reference: https://minecraft.wiki/w/Camel_Husk#Drops
 CAMEL_HUSK:
   experience: 3
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 2-3
@@ -105,6 +118,7 @@ CAMEL_HUSK:
 # Reference: https://minecraft.wiki/w/Cat#Drops
 CAT:
   experience: 1
+  custom_model_data: 0
   loot:
     STRING:
       amount: 0-2
@@ -116,6 +130,7 @@ CAT:
 # Reference: https://minecraft.wiki/w/Cave_Spider#Drops
 CAVE_SPIDER:
   experience: 5
+  custom_model_data: 0
   loot:
     SPIDER_EYE:
       amount: 0-1
@@ -130,6 +145,7 @@ CAVE_SPIDER:
 # Reference: https://minecraft.wiki/w/Chicken#Drops
 CHICKEN:
   experience: 3
+  custom_model_data: 0
   loot:
     FEATHER:
       amount: 0-2
@@ -144,6 +160,7 @@ CHICKEN:
 # Reference: https://minecraft.wiki/w/Cod#Drops
 COD:
   experience: 1
+  custom_model_data: 0
   loot:
     COD:
       amount: 1-1
@@ -158,6 +175,7 @@ COD:
 # Reference: https://minecraft.wiki/w/Copper_Golem#Drops
 COPPER_GOLEM:
   experience: 0
+  custom_model_data: 0
   loot:
     COPPER_INGOT:
       amount: 1-3
@@ -169,6 +187,7 @@ COPPER_GOLEM:
 # Reference: https://minecraft.wiki/w/Cow#Drops
 COW:
   experience: 3
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -183,6 +202,7 @@ COW:
 # Reference: https://minecraft.wiki/w/Creaking#Drops
 CREAKING:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "ac91c87bbe7f4c586e0f8b60f9b76d173a41daa302944531703be9ff4fd117f8"
@@ -190,6 +210,7 @@ CREAKING:
 # Reference: https://minecraft.wiki/w/Creeper#Drops
 CREEPER:
   experience: 5
+  custom_model_data: 0
   loot:
     GUNPOWDER:
       amount: 0-2
@@ -201,6 +222,7 @@ CREEPER:
 # Reference: https://minecraft.wiki/w/Dolphin#Drops
 DOLPHIN:
   experience: 1
+  custom_model_data: 0
   loot:
     COD:
       amount: 0-1
@@ -212,6 +234,7 @@ DOLPHIN:
 # Reference: https://minecraft.wiki/w/Donkey#Drops
 DONKEY:
   experience: 1
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -223,6 +246,7 @@ DONKEY:
 # Reference: https://minecraft.wiki/w/Drowned#Drops
 DROWNED:
   experience: 5
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-2
@@ -241,6 +265,7 @@ DROWNED:
 # Reference: https://minecraft.wiki/w/Elder_Guardian#Drops
 ELDER_GUARDIAN:
   experience: 10
+  custom_model_data: 0
   loot:
     PRISMARINE_SHARD:
       amount: 0-2
@@ -264,6 +289,7 @@ ELDER_GUARDIAN:
 # Reference: https://minecraft.wiki/w/Enderman#Drops
 ENDERMAN:
   experience: 5
+  custom_model_data: 0
   loot:
     ENDER_PEARL:
       amount: 0-1
@@ -275,6 +301,7 @@ ENDERMAN:
 # Reference: https://minecraft.wiki/w/Endermite#Drops
 ENDERMITE:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "5bc7b9d36fb92b6bf292be73d32c6c5b0ecc25b44323a541fae1f1e67e393a3e"
@@ -282,6 +309,7 @@ ENDERMITE:
 # Reference: https://minecraft.wiki/w/Evoker#Drops
 EVOKER:
   experience: 10
+  custom_model_data: 0
   loot:
     EMERALD:
       amount: 0-1
@@ -296,6 +324,7 @@ EVOKER:
 # Reference: https://minecraft.wiki/w/Fox#Drops
 FOX:
   experience: 1
+  custom_model_data: 0
   loot:
     EMERALD:
       amount: 1-1
@@ -325,6 +354,7 @@ FOX:
 # Reference: https://minecraft.wiki/w/Frog#Drops
 FROG:
   experience: 1
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "2ca4a8e494582c62aaa2c92474b16d69cd63baa3d3f50a4b631d6559ca0f33f5"
@@ -332,6 +362,7 @@ FROG:
 # Reference: https://minecraft.wiki/w/Ghast#Drops
 GHAST:
   experience: 5
+  custom_model_data: 0
   loot:
     GHAST_TEAR:
       amount: 0-1
@@ -346,6 +377,7 @@ GHAST:
 # Reference: https://minecraft.wiki/w/Glow_Squid#Drops
 GLOW_SQUID:
   experience: 1
+  custom_model_data: 0
   loot:
     GLOW_INK_SAC:
       amount: 1-3
@@ -357,6 +389,7 @@ GLOW_SQUID:
 # Reference: https://minecraft.wiki/w/Goat#Drops
 GOAT:
   experience: 1
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "457a0d538fa08a7affe312903468861720f9fa34e86d44b89dcec5639265f03"
@@ -364,6 +397,7 @@ GOAT:
 # Reference: https://minecraft.wiki/w/Guardian#Drops
 GUARDIAN:
   experience: 10
+  custom_model_data: 0
   loot:
     PRISMARINE_SHARD:
       amount: 0-2
@@ -381,6 +415,7 @@ GUARDIAN:
 # Reference: https://minecraft.wiki/w/Happy_Ghast#Drops
 HAPPY_GHAST:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "a1a36cb93d01675c4622dd5c8d872110911ec12c372e89afa8ba03862867f6fb"
@@ -388,6 +423,7 @@ HAPPY_GHAST:
 # Reference: https://minecraft.wiki/w/Hoglin#Drops
 HOGLIN:
   experience: 5
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-1
@@ -402,6 +438,7 @@ HOGLIN:
 # Reference: https://minecraft.wiki/w/Horse#Drops
 HORSE:
   experience: 3
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -413,6 +450,7 @@ HORSE:
 # Reference: https://minecraft.wiki/w/Husk#Drops
 HUSK:
   experience: 5
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-2
@@ -433,6 +471,7 @@ HUSK:
 # Reference: https://minecraft.wiki/w/Iron_Golem#Drops
 IRON_GOLEM:
   experience: 0
+  custom_model_data: 0
   loot:
     IRON_INGOT:
       amount: 3-5
@@ -447,6 +486,7 @@ IRON_GOLEM:
 # Reference: https://minecraft.wiki/w/Llama#Drops
 LLAMA:
   experience: 1
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -458,6 +498,7 @@ LLAMA:
 # Reference: https://minecraft.wiki/w/Nautilus#Drops
 NAUTILUS:
   experience: 3
+  custom_model_data: 0
   loot:
     NAUTILUS_SHELL:
       amount: 0-1
@@ -469,6 +510,7 @@ NAUTILUS:
 # Reference: https://minecraft.wiki/w/Magma_Cube#Drops
 MAGMA_CUBE:
   experience: 4
+  custom_model_data: 0
   loot:
     MAGMA_CREAM:
       amount: 2-6
@@ -480,6 +522,7 @@ MAGMA_CUBE:
 # Reference: https://minecraft.wiki/w/Mooshroom#Drops
 MOOSHROOM:
   experience: 1
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -494,6 +537,7 @@ MOOSHROOM:
 # Reference: https://minecraft.wiki/w/Mule#Drops
 MULE:
   experience: 1
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -505,6 +549,7 @@ MULE:
 # Reference: https://minecraft.wiki/w/Ocelot#Drops
 OCELOT:
   experience: 1
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "5657cd5c2989ff97570fec4ddcdc6926a68a3393250c1be1f0b114a1db1"
@@ -512,6 +557,7 @@ OCELOT:
 # Reference: https://minecraft.wiki/w/Panda#Drops
 PANDA:
   experience: 1
+  custom_model_data: 0
   loot:
     BAMBOO:
       amount: 1-1
@@ -523,6 +569,7 @@ PANDA:
 # Reference: https://minecraft.wiki/w/Parched#Drops
 PARCHED:
   experience: 5
+  custom_model_data: 0
   loot:
     BONE:
       amount: 0-2
@@ -541,6 +588,7 @@ PARCHED:
 # Reference: https://minecraft.wiki/w/Parrot#Drops
 PARROT:
   experience: 1
+  custom_model_data: 0
   loot:
     FEATHER:
       amount: 1-2
@@ -552,6 +600,7 @@ PARROT:
 # Reference: https://minecraft.wiki/w/Phantom#Drops
 PHANTOM:
   experience: 5
+  custom_model_data: 0
   loot:
     PHANTOM_MEMBRANE:
       amount: 0-1
@@ -563,6 +612,7 @@ PHANTOM:
 # Reference: https://minecraft.wiki/w/Pig#Drops
 PIG:
   experience: 1
+  custom_model_data: 0
   loot:
     PORKCHOP:
       amount: 1-3
@@ -574,6 +624,7 @@ PIG:
 # Reference: https://minecraft.wiki/w/Piglin#Drops
 PIGLIN:
   experience: 5
+  custom_model_data: 0
   loot:
     CROSSBOW:
       amount: 1-1
@@ -590,6 +641,7 @@ PIGLIN:
 # Reference: https://minecraft.wiki/w/Piglin_Brute#Drops
 PIGLIN_BRUTE:
   experience: 20
+  custom_model_data: 0
   loot:
     GOLDEN_AXE:
       amount: 1-1
@@ -602,6 +654,7 @@ PIGLIN_BRUTE:
 # Reference: https://minecraft.wiki/w/Pillager#Drops
 PILLAGER:
   experience: 5
+  custom_model_data: 0
   loot:
     CROSSBOW:
       amount: 1-1
@@ -617,6 +670,7 @@ PILLAGER:
 # Reference: https://minecraft.wiki/w/Polar_Bear#Drops
 POLAR_BEAR:
   experience: 1
+  custom_model_data: 0
   loot:
     COD:
       amount: 0-2
@@ -631,6 +685,7 @@ POLAR_BEAR:
 # Reference: https://minecraft.wiki/w/Pufferfish#Drops
 PUFFERFISH:
   experience: 3
+  custom_model_data: 0
   loot:
     PUFFERFISH:
       amount: 1-1
@@ -645,6 +700,7 @@ PUFFERFISH:
 # Reference: https://minecraft.wiki/w/Rabbit#Drops
 RABBIT:
   experience: 3
+  custom_model_data: 0
   loot:
     RABBIT_HIDE:
       amount: 0-1
@@ -662,6 +718,7 @@ RABBIT:
 # Reference: https://minecraft.wiki/w/Ravager#Drops
 RAVAGER:
   experience: 20
+  custom_model_data: 0
   loot:
     SADDLE:
       amount: 1-1
@@ -673,6 +730,7 @@ RAVAGER:
 # Reference: https://minecraft.wiki/w/Salmon#Drops
 SALMON:
   experience: 1
+  custom_model_data: 0
   loot:
     SALMON:
       amount: 1-1
@@ -687,6 +745,7 @@ SALMON:
 # Reference: https://minecraft.wiki/w/Sheep#Drops
 SHEEP:
   experience: 1
+  custom_model_data: 0
   loot:
     WHITE_WOOL:
       amount: 1-1
@@ -701,6 +760,7 @@ SHEEP:
 # Reference: https://minecraft.wiki/w/Shulker#Drops
 SHULKER:
   experience: 5
+  custom_model_data: 0
   loot:
     SHULKER_SHELL:
       amount: 0-1
@@ -712,6 +772,7 @@ SHULKER:
 # Reference: https://minecraft.wiki/w/Silverfish#Drops
 SILVERFISH:
   experience: 5
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "bfe13237e1109cab7264dc53b0aa697cf9a7c62c984a269fb0755a288912bbca"
@@ -719,6 +780,7 @@ SILVERFISH:
 # Reference: https://minecraft.wiki/w/Skeleton#Drops
 SKELETON:
   experience: 5
+  custom_model_data: 0
   loot:
     BONE:
       amount: 0-2
@@ -737,6 +799,7 @@ SKELETON:
 # Reference: https://minecraft.wiki/w/Skeleton_Horse#Drops
 SKELETON_HORSE:
   experience: 3
+  custom_model_data: 0
   loot:
     BONE:
       amount: 0-2
@@ -748,6 +811,7 @@ SKELETON_HORSE:
 # Reference: https://minecraft.wiki/w/Slime#Drops
 SLIME:
   experience: 4
+  custom_model_data: 0
   loot:
     SLIME_BALL:
       amount: 1-6
@@ -759,6 +823,7 @@ SLIME:
 # Reference: https://minecraft.wiki/w/Sniffer#Drops
 SNIFFER:
   experience: 5
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "fe5a8341c478a134302981e6a7758ea4ecfd8d62a0df4067897e75502f9b25de"
@@ -766,6 +831,7 @@ SNIFFER:
 # Reference: https://minecraft.wiki/w/Snow_Golem#Drops
 SNOW_GOLEM:
   experience: 0
+  custom_model_data: 0
   loot:
     SNOWBALL:
       amount: 0-15
@@ -777,6 +843,7 @@ SNOW_GOLEM:
 # Reference: https://minecraft.wiki/w/Spider#Drops
 SPIDER:
   experience: 5
+  custom_model_data: 0
   loot:
     STRING:
       amount: 0-2
@@ -791,6 +858,7 @@ SPIDER:
 # Reference: https://minecraft.wiki/w/Squid#Drops
 SQUID:
   experience: 3
+  custom_model_data: 0
   loot:
     INK_SAC:
       amount: 1-3
@@ -802,6 +870,7 @@ SQUID:
 # Reference: https://minecraft.wiki/w/Stray#Drops
 STRAY:
   experience: 5
+  custom_model_data: 0
   loot:
     BONE:
       amount: 0-2
@@ -824,6 +893,7 @@ STRAY:
 # Reference: https://minecraft.wiki/w/Strider#Drops
 STRIDER:
   experience: 3
+  custom_model_data: 0
   loot:
     STRING:
       amount: 2-5
@@ -835,6 +905,7 @@ STRIDER:
 # Reference: https://minecraft.wiki/w/Tadpole#Drops
 TADPOLE:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "987035f5352334c2cba6ac4c65c2b9059739d6d0e839c1dd98d75d2e77957847"
@@ -842,6 +913,7 @@ TADPOLE:
 # Reference: https://minecraft.wiki/w/Trader_Llama#Drops
 TRADER_LLAMA:
   experience: 1
+  custom_model_data: 0
   loot:
     LEATHER:
       amount: 0-2
@@ -853,6 +925,7 @@ TRADER_LLAMA:
 # Reference: https://minecraft.wiki/w/Tropical_Fish#Drops
 TROPICAL_FISH:
   experience: 1
+  custom_model_data: 0
   loot:
     TROPICAL_FISH:
       amount: 1-1
@@ -867,6 +940,7 @@ TROPICAL_FISH:
 # Reference: https://minecraft.wiki/w/Turtle#Drops
 TURTLE:
   experience: 1
+  custom_model_data: 0
   loot:
     SEAGRASS:
       amount: 0-2
@@ -878,6 +952,7 @@ TURTLE:
 # Reference: https://minecraft.wiki/w/Vex#Drops
 VEX:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "b663134d7306bb604175d2575d686714b04412fe501143611fcf3cc19bd70abe"
@@ -885,6 +960,7 @@ VEX:
 # Reference: https://minecraft.wiki/w/Villager#Drops
 VILLAGER:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "a36e9841794a37eb99524925668b47a62b5cb72e096a9f8f95e106804ae13e1b"
@@ -892,6 +968,7 @@ VILLAGER:
 # Reference: https://minecraft.wiki/w/Vindicator#Drops
 VINDICATOR:
   experience: 5
+  custom_model_data: 0
   loot:
     EMERALD:
       amount: 0-1
@@ -907,6 +984,7 @@ VINDICATOR:
 # Reference: https://minecraft.wiki/w/Wandering_Trader#Drops
 WANDERING_TRADER:
   experience: 0
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "ee011aac817259f2b48da3e5ef266094703866608b3d7d1754432bf249cd2234"
@@ -914,6 +992,7 @@ WANDERING_TRADER:
 # Reference: https://minecraft.wiki/w/Warden#Drops
 WARDEN:
   experience: 5
+  custom_model_data: 0
   loot:
     SCULK_CATALYST:
       amount: 1-1
@@ -925,6 +1004,7 @@ WARDEN:
 # Reference: https://minecraft.wiki/w/Witch#Drops
 WITCH:
   experience: 5
+  custom_model_data: 0
   loot:
     REDSTONE:
       amount: 4-8
@@ -954,6 +1034,7 @@ WITCH:
 # Reference: https://minecraft.wiki/w/Wither_Skeleton#Drops
 WITHER_SKELETON:
   experience: 5
+  custom_model_data: 0
   loot:
     COAL:
       amount: 0-1
@@ -975,6 +1056,7 @@ WITHER_SKELETON:
 # Reference: https://minecraft.wiki/w/Wolf#Drops
 WOLF:
   experience: 3
+  custom_model_data: 0
   head_texture:
     material: "PLAYER_HEAD"
     custom_texture: "8f0b221786f193c06dd19a7875a903635113f84523927bb69764237fe20703de"
@@ -982,6 +1064,7 @@ WOLF:
 # Reference: https://minecraft.wiki/w/Zoglin#Drops
 ZOGLIN:
   experience: 5
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 1-3
@@ -993,6 +1076,7 @@ ZOGLIN:
 # Reference: https://minecraft.wiki/w/Zombie#Drops
 ZOMBIE:
   experience: 5
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-2
@@ -1013,6 +1097,7 @@ ZOMBIE:
 # Reference: https://minecraft.wiki/w/Zombie_Horse#Drops
 ZOMBIE_HORSE:
   experience: 3
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-2
@@ -1024,6 +1109,7 @@ ZOMBIE_HORSE:
 # Reference: https://minecraft.wiki/w/Zombie_Nautilus#Drops
 ZOMBIE_NAUTILUS:
   experience: 3
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-3
@@ -1035,6 +1121,7 @@ ZOMBIE_NAUTILUS:
 # Reference: https://minecraft.wiki/w/Zombie_Villager#Drops
 ZOMBIE_VILLAGER:
   experience: 5
+  custom_model_data: 0
   loot:
     ROTTEN_FLESH:
       amount: 0-2
@@ -1055,6 +1142,7 @@ ZOMBIE_VILLAGER:
 # Reference: https://minecraft.wiki/w/Zombified_Piglin#Drops
 ZOMBIFIED_PIGLIN:
   experience: 5
+  custom_model_data: 0
   loot:
     GOLD_NUGGET:
       amount: 0-1

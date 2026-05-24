@@ -117,6 +117,7 @@ public class SpawnerItemFactory {
                 meta.lore(lore);
             }
             meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+            applyItemCustomModelData(meta, plugin.getSpawnerSettingsConfig().getCustomModelData(entityType));
             spawner.setItemMeta(meta);
         }
         VersionInitializer.hideTooltip(spawner);
@@ -175,6 +176,7 @@ public class SpawnerItemFactory {
                     PersistentDataType.BOOLEAN,
                     true
             );
+            applyItemCustomModelData(meta, plugin.getSpawnerSettingsConfig().getCustomModelData(entityType));
             spawner.setItemMeta(meta);
         }
         return spawner;
@@ -245,10 +247,18 @@ public class SpawnerItemFactory {
                     PersistentDataType.STRING,
                     itemMaterial.name()
             );
-            
+
+            applyItemCustomModelData(meta, plugin.getItemSpawnerSettingsConfig().getCustomModelData(itemMaterial));
+
             spawner.setItemMeta(meta);
         }
         VersionInitializer.hideTooltip(spawner);
         return spawner;
+    }
+
+    private void applyItemCustomModelData(ItemMeta meta, Integer customModelData) {
+        if (customModelData != null) {
+            VersionInitializer.applyCustomModelData(meta, customModelData);
+        }
     }
 }
